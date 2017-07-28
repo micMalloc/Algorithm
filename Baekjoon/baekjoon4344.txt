@@ -1,0 +1,28 @@
+#include <cstdio>
+#define MAX 1000
+
+int score[MAX];
+
+int main (void) {
+	int t, n, count;
+	float avg, rate;
+
+	scanf("%d", &t);
+	while (t --) {
+		count = avg = 0;
+		
+		scanf("%d", &n);
+		for (int i = 0; i < n; ++ i) {
+			scanf("%d", &score[i]);
+			avg += score[i];
+		} avg = avg / n;
+
+		for (int i = 0; i < n; ++ i) {
+			if (score[i] > avg)
+				count ++;
+		} rate = ((float)count / n) * 100;
+		printf("%0.3f%%\n", rate);
+	}
+
+	return 0;
+}
