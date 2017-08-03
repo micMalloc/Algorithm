@@ -1,0 +1,10 @@
+#include <cstdio>
+
+int main (void) {
+	char c;
+	while (true) {
+		c = getchar();
+		if (c == EOF) break;
+		putchar(c);
+	} return 0;
+}
