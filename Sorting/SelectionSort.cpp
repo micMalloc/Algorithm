@@ -2,6 +2,7 @@
 #define MAX 100
 
 void selectionSort (int[MAX], int);
+void swap (int[MAX], int, int);
 
 int main (void) {
 	int i;
@@ -23,8 +24,13 @@ void selectionSort (int list[], int n) {
 		for (j = i + 1; j < n; ++ j) {
 			if (list[min] > list[j]) min = j;
 		}
-		tmp = list[i];
-		list[i] = list[min];
-		list[min] = tmp;
+		if (i != min) swap(list, i, min)
 	}
+}
+void swap (int list[], int a, int b) {
+	int tmp;
+
+	tmp = list[a];
+	list[a] = list[b];
+	list[b] = tmp;
 }
