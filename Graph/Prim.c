@@ -1,12 +1,12 @@
 /*Psuedo Code
 Q <- V
-for each v ◆ V
+for each v 隆么 V
 	key[v] <- IN
-key[s] <- 0 // some arbitrary v ◆ V
+key[s] <- 0 // some arbitrary v 隆么 V
 while Q != 0
 	do u <- Extract_Min(Q)
-	for each v ◆ Adj[u]
-		do if v ◆ Q and w(u, v) < key[v]
+	for each v 隆么 Adj[u]
+		do if v 隆么 Q and w(u, v) < key[v]
 			then key[v] <- w(u, v)
 				 n[v] <- u
 */
@@ -49,10 +49,11 @@ int main ()
 		scanf("%d %d %d", &a, &b, &w);
 		cost[a][b] = cost[b][a] = w;
 	}
-
+	
+	//Prim's Algorithm
 	for (i = 1; i <= n; ++ i)
 		key[i] = INFINITY;
-
+        
 	key[4] = 0;
 	while (isEmpty())
 	{
