@@ -5,6 +5,7 @@
 #define INF 1e9
 using namespace std;
 
+
 int LIS (int, int[MAX]);
 vector<int> lis;
 
