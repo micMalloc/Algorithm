@@ -1,41 +1,50 @@
 #include <cstdio>
-#define MAX  100
+#include <vector>
+#include <algorithm>
+using namespace std;
 
-void quickSort (int, int);
-int partition (int, int);
-void swap (int, int);
+void quick_sort (int, int);
 
-int list[MAX];
+vector<int> list;
 
-int main (void) {
+int main (int argc, char** argv) {
 	int n;
+	int key;
+
+	scanf("%d", &n);
+	for (int i = 0; i < n; ++ i) {
+		scanf("%d", &key);
+		list.push_back(key);
+	}
+	quick_sort (0, n - 1);
+
+	for (int i = 0; i < n; ++ i) {
+		printf("%d ", list[i]);
+	} printf("\n");
 
 	return 0;
 }
 
-void quickSort (int start, int end) {
-	int pivot;
-	if (start < end) {
-		pivot = partition (start, end);
-		quickSort (start, pivot - 1);
-		quickSort (pivot + 1, end);
-	}
-}
-
-int partition (int start, int end) {
+void quick_sort (int start, int end) {
+	int pivot = list[start];
 	int left, right;
-	int pivot = list[end];
 
-	left = start; right = end - 1;
+	left = start; right = end;
+
 	while (left < right) {
-		
+		while (pivot <= list[right] && left < right) right --;
+		if (left > right) break;
+
+		while (pivot >= list[left] && left < right) left ++;
+		if (left > right) break;
+
+		swap(list[left], list[right]);
+	} swap(list[start], list[right]);
+
+	if (start < left) {
+		quick_sort(start, left - 1);
 	}
-}
-
-void swap (int a, int b) {
-	int tmp;
-
-	tmp = list[a];
-	list[a] = list[b];
-	list[b] = tmp;
+	if (right < end) {
+		quick_sort(right + 1, end);
+	}
 }
