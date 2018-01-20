@@ -1,67 +1,76 @@
-#include <stdio.h>
-#define MAX 100
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 typedef struct EDGE {
-	int u;
-	int v;
-	int w;
+	int a;
+	int b;
+	int c;
+
+	//bool operator < (const EDGE& a) const {
+		//return (c < a.c);
+	//}
 } Edge;
 
-void kruskal ();
-void make_set ();
-int find_set ();
-void union_set ();
-void mergeSort (int , int);
-void merge (int, int);
+bool cmp_Edge (Edge a, Edge b) {
+	return (a.c < b.c);
+}
 
-Edge e[MAX], tmp[MAX];
+int find_set (int);
+bool union_set (int, int);
+int kruskal (int);
 
+vector<int> parent;
+vector<Edge> e;
 
-int main (void) {
+int main (int argc, char** argv) {
+	int n, m;
+	int a, b, c;
+
+	scanf("%d %d", &n, &m);
+	parent.resize(n + 1);
+	e.resize(m);
+	
+	for (int i = 0; i < m; ++ i) {
+		scanf("%d %d %d", &a, &b, &c);
+		e[i].a = a;
+		e[i].b = b;
+		e[i].c = c;
+	}
+	printf("%d\n", kruskal(n));
 
 	return 0;
 }
 
-void kruskal () {
-	
+int find_set (int u) {
+	if (u == parent[u]) {
+		return u;
+	} return parent[u] = find_set(parent[u]);
 }
 
-void make_set () {
-	
+bool union_set (int a, int b) {
+	int p, q;
+
+	p = find_set(a);
+	q = find_set(b);
+
+	if (p != q) {
+		parent[p] = q;
+		return true;
+	} return false;
 }
-int find_set () {
 
-}
-void union_set () {
-
-}
-
-void mergeSort (int start, int end) {
-	int mid;
-
-	if (start, end) {
-		mid = (start + end) / 2;
-		mergeSort (start, mid);
-		mergeSort (mid + 1, end);
-		merge (start, end);
+int kruskal (int n) {
+	int total = 0;
+	for (int i = 1; i <= n; ++ i) {
+		parent[i] = i;
 	}
-}
 
-void merge (int start, int end) {
-	int mid = (start + end) / 2;
-	int left, right;
-	int idx = 0, i;
-	
-	left = start; right = mid + 1;
-	while (left <= mid && right <= end) {
-		if (e[left].w < e[right].w) {
-			tmp[idx ++] = e[left ++];
-		} else {
-			tmp[idx ++] = e[right ++];
+	sort (e.begin(), e.end(), cmp_Edge);
+	for (int i = 0; i < e.size(); ++ i) {
+		if (union_set(e[i].a, e[i].b)) {
+			total += e[i].c;
 		}
-	}
-
-	for (i = 0; i < idx; ++ i) {
-		e[start + i] = tmp[i];
-	}
+	} return total;
 }
