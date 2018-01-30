@@ -58,7 +58,7 @@ vector<Point> Jarvis (int n, int start) {
 		
 		next = (current + 1) % n;
 		for (int i = 0; i < n; ++ i) {
-			if (orientation(pList[current], pList[i], pList[next])) {
+			if (orientation(pList[current], pList[i], pList[next]) > 0) {
 				next = i;
 			}
 		} current = next;
