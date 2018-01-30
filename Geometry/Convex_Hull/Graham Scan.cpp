@@ -59,8 +59,11 @@ void set_start_point () {
 	int min = 0, tmp;
 
 	for (int i = 1; i < p.size(); ++ i) {
-		if (p[min].y > p[i].y) {
-			min = i;
+		if (p[min].y >= p[i].y) {
+			if (p[min].y == p[i].y) {
+				if (p[min].x > p[i].x)
+					min = i;
+			} min = i;
 		}
 	}
 	if (min != 0)
