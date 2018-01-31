@@ -58,6 +58,7 @@ vector<Point> Jarvis (int n, int start) {
 		
 		next = (current + 1) % n;
 		for (int i = 0; i < n; ++ i) {
+			/* if ccw, update next to i */
 			if (orientation(pList[current], pList[i], pList[next]) > 0) {
 				next = i;
 			}
