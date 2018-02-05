@@ -9,22 +9,33 @@ int n, m;
 void warshall ();
 
 int main (int argc, char** argv) {
-	int next[MAX];
 	vector<int> list;
 
 	scanf("%d", &n);
 	scanf("%d", &m);
 
 	list.resize(m);
-	for (int i = 0; i < m; ++ i)
-		scanf("%d", &list[i]);
-
+	
 	for (int i = 1; i <= n; ++ i)
 		for (int j = 1; j <= n; ++ j)
 			scanf("%d", &adj[i][j]);
+	for (int i = 0; i < m; ++ i)
+		scanf("%d", &list[i]);
 	warshall();
 	
-	
+	bool isAvailable = true;
+	int u, v;
+
+	u = list[0];
+	for (int i = 1; i < m; ++ i) {
+		v = list[i];
+		if (adj[u][v] != 1)
+			isAvailable = false;
+		u = v;
+	}
+
+	if (isAvailable) printf("YES\n");
+	else printf("NO\n");
 
 	return 0;
 }
