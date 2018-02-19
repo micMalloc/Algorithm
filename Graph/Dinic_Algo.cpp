@@ -2,7 +2,7 @@ int dinic (int s, int t) {
 	int max_flow;
 	int total_flow = 0;
 
-	while (make_level_graph()) {
+	while (make_level_graph(s, t)) {
 		fill(work, work + MAX, 0);
 		while (1) {
 			max_flow = flood_flow(s, t, INF);
