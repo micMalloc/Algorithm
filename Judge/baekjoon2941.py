@@ -13,6 +13,11 @@ def extract_sub_str (sub, s):
     return left + " " + right
 
 
+def strip_str (s):
+    s = s.replace(" ", "")
+    return s
+
+
 special_list = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
 
 input_str = input()
@@ -21,16 +26,14 @@ cnt = 0
 
 while True:
     sub = match_sub_to_str(input_str, special_list)
-
+    
     if sub is None:
         break
-
+    
     cnt += 1
     input_str = extract_sub_str(sub, input_str)
 
-input_str = input_str.replace(" ", "")
+input_str = strip_str(input_str)
 answer = cnt + len(input_str)
 
 print(answer)
-
-
