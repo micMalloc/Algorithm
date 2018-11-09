@@ -13,9 +13,12 @@ int cost[MAX][MAX];
 void Floyd_Warshall (int n) {
     int d[MAX][MAX];
     
+    // If i == j, d[i][j] = 0
     for (int i = 0; i < n; ++ i) {
         for (int j = 0; j < n; ++ j) {
-            d[i][j] = cost[i][j];
+            if (i != j) {
+                d[i][j] = cost[i][j];
+            }
         }
     }
     
