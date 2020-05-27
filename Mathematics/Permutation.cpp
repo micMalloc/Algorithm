@@ -1,3 +1,6 @@
+/*
+arr must be initialized before calling function!!
+*/
 void permutation (int arr[], int set_size, const int SIZE, const int THRESHOLD) {
     if (set_size == THRESHOLD) {
         return;
